@@ -11,6 +11,10 @@ RUN apt-get update && apt-get install -y \
 
 ENV YUICOMPRESSOR_VERSION 2.4.8
 
+RUN mkdir -p /opt/yuicompressor
+WORKDIR /opt/yuicompressor
 RUN wget -O yuicompressor.jar https://github.com/yui/yuicompressor/releases/download/v${YUICOMPRESSOR_VERSION}/yuicompressor-${YUICOMPRESSOR_VERSION}.jar
 
-CMD java -jar yuicompressor.jar
+WORKDIR /usr/src
+
+CMD java -jar /opt/yuicompressor/yuicompressor.jar
